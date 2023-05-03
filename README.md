@@ -8,17 +8,21 @@ Make sure you have Node.js installed on your machine. You can download it from t
 
 Clone the repository to your local machine using Git:
 
-    git clone https://github.com/czffrktln/YourTherapy
+    git clone https://github.com/czffrktln/TNDR4NTFLX
 
 Navigate to the project directory:
 
     cd your-project-name
 
 Navigate to the project backend directory:
+
     cd server
 
+
 Install the backend dependencies:
+
     npm install
+
 
 Navigate to the frontend directory:
 
