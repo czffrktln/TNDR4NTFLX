@@ -8,7 +8,7 @@ Make sure you have Node.js installed on your machine. You can download it from t
 
 Clone the repository to your local machine using Git:
 
-    git clone https://github.com/czffrktln/TNDR4NTFLX
+    git clone https://github.com/czffrktln/TNDR4NTFLX.git
 
 Navigate to the project directory:
 
