@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow&family=Braah+One&family=Darumadrop+One&family=Fragment+Mono&family=Genos&family=IBM+Plex+Sans+Arabic&family=Konkhmer+Sleokchher&family=Rampart+One&family=Sono&display=swap');
+
+/* font-family: 'Barlow', sans-serif;
+font-family: 'Braah One', sans-serif;
+font-family: 'Fragment Mono', monospace;
+font-family: 'Genos', sans-serif;
+font-family: 'IBM Plex Sans Arabic', sans-serif;
+font-family: 'Rampart One', cursive;
+font-family: 'Sono', sans-serif; 
+font-family: 'Darumadrop One', cursive; 
+font-family: 'Konkhmer Sleokchher', cursive; */
+
+/* apricot: ffcdb2, melon: ffb4a2, salmon pink: e5989b, old rose: b5838d, dim gray: 6d6875 */
+
+/* russian violet: 231942, ultra violet: 5e548e, african violet: 9f86c0, lilac: be95c4, pink lavender: e0b1cb */
+
+/* charcoal: 233d4d, pumpkin: fe7f2d, sunglow: fcca46, olivine: a1c181, zomp: 619b8a */
+
+/* melon: #F3B3A6, rosy brown: #E4959E, salmon pink: #B98B82, charcoal: #37515F, licorice: #1F0812 */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* #root {
+  height: 100vh;
+} */
+
+.App {
+  min-height: 100vh;
+  background-color: #619b8a;
+  /* border: 3px solid red; */
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  background-color: #233d4d;
+  color: #F3B3A6;
+  text-align: center;
+  height: 8vh;
+  /* border: 2px solid yellow; */
+}
+.navbar h1 {
+  font-family: 'Rampart One', cursive;
+  /* font-family: 'Konkhmer Sleokchher', cursive; */
+}
+
+#loginButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+}
+
+#loginButton button {
+  padding: 10px;
+  letter-spacing: 2px;
+  font-family: 'Konkhmer Sleokchher', cursive;
+  background-color: #F3B3A6;
+}
+#loginCallback {
+  background-color: #a1c181;
+  height: 95vh;
+}
+
+#dashboard {
+  /* border: 3px solid greenyellow; */
+  background-color: #F3B3A6;
+  height: 92vh;
+  padding: 20px;
+  
+}
+
+img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+#friendsContainer {
+  display: flex;
+  /* border: 1px solid black; */
+  gap: 10px;
+}
+
+.oneFriend {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  /* border: 1px solid pink; */
+  
+}
+
+/* .activeFriend {
+  border: 1px solid pink;
+}
+
+.pendingFriend {
+  border: 1px solid blue;
+} */
+
+.pendingFriend img, .pendingFriend h3 {
+  opacity: 0.2;
+}
+.tinderPage {
+  display: flex;
+  /* justify-content: center; */
+  flex-direction: column;
+  align-items: center;
+  
+}
+.tinderPage img {
+  border-radius: 0;
+  width: 300px;
+  height: auto;
+
+}
+
+.matchPage {
+  display: flex;
+  /* justify-content: center; */
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffb4a2;
+}
+
+.movie {
+  background-color: whitesmoke;
+  padding: 10px;
+}
+
+.matchPage img {
+  border-radius: 0;
+  width: 200px;
+  height: auto;
+
+}
+
+.moreDetailsWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.moreDetails {
+  width: 300px;
+  height: auto;
+  align-items: center;
+  text-align: justify;
+}
