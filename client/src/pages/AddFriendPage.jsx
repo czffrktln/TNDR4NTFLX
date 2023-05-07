@@ -4,6 +4,7 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom";
 import LogoutButton from "../components/LogoutButton";
 import { UserContext } from "../context/UserContext";
+import BackButton from "../components/BackButton";
 
 
 const AddFriendPage = () => {
@@ -27,11 +28,18 @@ const AddFriendPage = () => {
   console.log("user", user);
 
   return (
-    <>
-    <input type="text" value={friendInput} onChange={(e) => setFriendInput(e.target.value)}></input>
-    <button onClick={sendFriendRequest}>ADD</button>
-    <LogoutButton />
-    </>
+    <div id="addFriendPage">
+      <div id="addFriendPageInput">
+        <input type="text" placeholder="username" value={friendInput} onChange={(e) => setFriendInput(e.target.value)}></input>
+      </div>
+      <div className="buttonsDiv">
+        <div className="buttonPositionDiv">
+          <button onClick={sendFriendRequest}>add</button>
+          <BackButton/>
+          {/* <LogoutButton /> */}
+        </div>
+      </div>
+    </div>
   )
 }
 export default AddFriendPage

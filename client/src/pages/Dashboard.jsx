@@ -41,7 +41,7 @@ const Dashboard = () => {
             userid: userid
           }})
       }
-    }, 300000);
+    }, 3000);
     return () => clearInterval(friendRequestInterval)
   }, [])
 
@@ -60,30 +60,36 @@ const Dashboard = () => {
           state: response.data.pair
         })
       }
-    }, 300000);
+    }, 3000);
     return () => clearInterval(pairRequestInterval)
   }, [])
   
   return (
     <div id="dashboard">
-    
-    { allfriends.length === 0 ? 
-    <div>
-      <h2>Hi {user.user.username} !</h2>
-      <p>It seems you don't have any friends. Do you?</p>
-    </div> 
-    :
-    <div>
-      <h2>Hi {user.user.username} !</h2>
-      <p>Who's gonna be your match tonight?</p>
-      <div id="friendsContainer">
-          {activeFriends && activeFriends.map(friend => <div className="activeFriend"><Friend key={friend._id} friend={friend}/></div>)} 
-          {pendingFriends && pendingFriends.map(friend => <div className="pendingFriend"><Friend key={friend._id} friend={friend}/></div>)} 
+      { allfriends.length === 0 ? 
+        <div id="noFriendsDiv">
+          <h1>Hi {user.user.username} !</h1>
+          <p>It seems you don't have any friends. <br/>Do you?</p>
+          <div>
+            <img id="noFriendsGif" src="https://gifdb.com/images/thumbnail/alone-milhouse-simpsons-playing-frisbee-shttfqffmcvi4h5x.gif"></img>
+          </div>
+        </div> 
+        :
+        <div>
+          <h1>Hi {user.user.username} !</h1>
+          <h4>Who's gonna be your match tonight?</h4>
+          <div id="friendsContainer">
+              {activeFriends && activeFriends.map(friend => <div className="activeFriend"><Friend key={friend._id} friend={friend}/></div>)} 
+              {pendingFriends && pendingFriends.map(friend => <div className="pendingFriend"><Friend key={friend._id} friend={friend}/></div>)} 
+          </div>
+        </div>
+      }
+      <div className="buttonsDiv">
+        <div className="buttonPositionDiv">
+          <button onClick={() => navigate("/addfriend")}>add</button>
+          <LogoutButton />
+        </div>
       </div>
-    </div>
-    }
-    <button onClick={() => navigate("/addfriend")}>ADD</button>
-    <LogoutButton />
     </div>
   )
 }

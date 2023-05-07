@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Barlow&family=Braah+One&family=Darumadrop+One&family=Fragment+Mono&family=Genos&family=IBM+Plex+Sans+Arabic&family=Konkhmer+Sleokchher&family=Rampart+One&family=Sono&display=swap');
 
 /* font-family: 'Barlow', sans-serif;
@@ -14,19 +15,18 @@ font-family: 'Konkhmer Sleokchher', cursive; */
 
 /* russian violet: 231942, ultra violet: 5e548e, african violet: 9f86c0, lilac: be95c4, pink lavender: e0b1cb */
 
-/* charcoal: 233d4d, pumpkin: fe7f2d, sunglow: fcca46, olivine: a1c181, zomp: 619b8a */
+/* charcoal: 233d4d, pumpkin: fe7f2d, sunglow: FCCA46, olivine: A1C181, zomp: 619B8A */
 
 /* melon: #F3B3A6, rosy brown: #E4959E, salmon pink: #B98B82, charcoal: #37515F, licorice: #1F0812 */
+
+/* gif #C6FCE0,  #FEB6BD*/
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  /* font-size: 62.5%; */
 }
-
-/* #root {
-  height: 100vh;
-} */
 
 .App {
   min-height: 100vh;
@@ -34,25 +34,32 @@ font-family: 'Konkhmer Sleokchher', cursive; */
   /* border: 3px solid red; */
   display: flex;
   flex-direction: column;
+  /* font-size: 10rem; */
 }
+
+/* ******** NAVBAR ********** */
 
 .navbar {
   background-color: #233d4d;
   color: #F3B3A6;
-  text-align: center;
+  /* text-align: center; */
   height: 8vh;
   /* border: 2px solid yellow; */
+  display: flex;
+  justify-content: center;
 }
 .navbar h1 {
   font-family: 'Rampart One', cursive;
   /* font-family: 'Konkhmer Sleokchher', cursive; */
+  /* font-size: 3rem;
+  padding: 0.1em; */
 }
 
 #loginButton {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 90vh;
+  height: 92vh;
 }
 
 #loginButton button {
@@ -61,28 +68,125 @@ font-family: 'Konkhmer Sleokchher', cursive; */
   font-family: 'Konkhmer Sleokchher', cursive;
   background-color: #F3B3A6;
 }
+
+/* ******** LOGIN CALLBACK ********** */
+
 #loginCallback {
-  background-color: #a1c181;
-  height: 95vh;
+  background-color: #619b8a;
+  height: 92vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+#loginCallback h3 {
+  font-family: 'Konkhmer Sleokchher', cursive;
+  letter-spacing: 2px;
+  color: white;
+}
+
+/* ******** SET USERNAME ********** */
+
+#setUsername {
+  background-color: #37515F;
+  border-top: 3px solid #F3B3A6;
+  height: 92vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+  /* text-align: center; */
+  padding-top: 50%;
+}
+#setUsername h2 {
+  font-family: 'Konkhmer Sleokchher', cursive;
+  color: #F3B3A6;
+}
+#setUsername p {
+  font-family: 'Konkhmer Sleokchher', cursive;
+  color: #F3B3A6;
+  padding: 2%;
+}
+#setUsername .buttonsDiv button {
+  font-family: 'Konkhmer Sleokchher', cursive;
+  padding: 3px;
+  letter-spacing: 2px;
+  background-color: #F3B3A6;
+  color: #233D4D;
+  
+}
+
+/* ******** DASHBOARD ********** */
 
 #dashboard {
   /* border: 3px solid greenyellow; */
   background-color: #F3B3A6;
   height: 92vh;
   padding: 20px;
-  
+  position: relative;
 }
+
+#dashboard button {
+  padding: 4px;
+  letter-spacing: 2px;
+  font-family: 'Konkhmer Sleokchher', cursive;
+  background-color: #233d4d;
+  color: white;
+}
+
+#dashboard h1 {
+  padding-bottom: 10px;
+  /* font-family: 'Konkhmer Sleokchher', cursive; */
+  font-family: 'Rampart One', cursive;
+  color: #233d4d;
+  /* color: white; */
+} 
+#dashboard p {
+  font-family: 'Konkhmer Sleokchher', cursive;
+  color: #233d4d;
+}
+
+#dashboard h4 {
+  font-family: 'Konkhmer Sleokchher', cursive;
+  color: #233d4d;
+}
+
+#noFriendsDiv {
+  /* border: 2px solid white; */
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  /* align-items: center; */
+}
+#noFriendsDiv div {
+  /* border: 2px solid #233d4d; */
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+}
+#noFriendsGif {
+  width: 80%;
+  height: auto;
+  padding-top: 20%;
+}
+
+/* ******** FRIEND ********** */
 
 img {
   width: 60px;
   height: 60px;
-  border-radius: 50%;
+  /* border-radius: 50%; */
+  
+  /* border: 2px solid #233d4d; */
 }
+
 #friendsContainer {
-  display: flex;
+
   /* border: 1px solid black; */
-  gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  /* gap: 0px 10px; */
 }
 
 .oneFriend {
@@ -90,8 +194,15 @@ img {
   flex-direction: column;
   align-items: center;
   padding: 10px;
-  /* border: 1px solid pink; */
-  
+  /* flex: 1 1 200px; */
+  /* text-align: center; */
+  /* border: 1px solid white;   */
+}
+
+.oneFriend h4 {
+  font-family: 'Konkhmer Sleokchher', cursive;
+  /* letter-spacing: 2px; */
+  color: #233D4D;
 }
 
 /* .activeFriend {
@@ -105,21 +216,317 @@ img {
 .pendingFriend img, .pendingFriend h3 {
   opacity: 0.2;
 }
+
+/* ******** BUTTONS DIV ********** */
+
+.buttonsDiv {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  /* border: 2px solid black; */
+  width: 100%;
+  padding-bottom: 10px;
+  /* display: flex;
+  justify-content: center; */
+  
+}
+.buttonPositionDiv {
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: center;
+  position: relative;
+  padding-bottom: 10px;
+}
+.buttonPositionDiv #logoutButton {
+  position: absolute;
+  right: 20px;
+}
+
+.buttonPositionDiv #backButton {
+  position: absolute;
+  right: 20px;
+}
+
+/* .buttonsDiv #logoutButton {
+  border: 1px solid green;
+  position: relative;
+  right: 0;
+} */
+
+/* ******** ADD FRIEND PAGE ********** */
+
+#addFriendPage {
+  border: 1px solid black;
+  height: 92vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#addFriendPage button {
+  padding: 4px;
+  letter-spacing: 2px;
+  font-family: 'Konkhmer Sleokchher', cursive;
+  /* background-color: #233d4d;
+  color: #F3B3A6; */
+  background-color: #F3B3A6;
+  color: #233d4d;
+}
+#addFriendPageInput {
+  /* border: 1px solid black; */
+}
+
+input {
+  padding: 5px;
+}
+
+/* ******** INCOMING FRIEND REQUEST PAGE ********** */
+
+#incomingFriendRequest {
+  height: 92vh;
+  background-color: #E4959E;
+  text-align: center;
+  padding-top: 60px;
+  font-family: 'Konkhmer Sleokchher', cursive;
+  color:#233D4D;
+}
+
+#incomingFriendRequest img {
+  margin: 10px;
+}
+
+#incomingFriendRequest h2 {
+  letter-spacing: 2px;
+  /* margin: 10px; */
+}
+
+.oneButtonDiv {
+  /* border: 1px solid black; */
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 20px;
+  padding-right: 20px;
+}
+
+#incomingFriendRequestWrapper button {
+  font-family: 'Konkhmer Sleokchher', cursive;
+  padding: 4px;
+  letter-spacing: 2px;
+  margin: 10px;
+  background-color: #FEB6BD;
+  color: #233D4D;
+  margin-top: 15%;
+}
+
+#incomingFriendRequest #logoutButton button {
+  padding: 4px;
+  letter-spacing: 2px;
+  font-family: 'Konkhmer Sleokchher', cursive;
+  /* background-color: #233d4d; */
+  /* color: #FEB6BD; */
+  background-color: #FEB6BD;
+  color: #233d4d;
+}
+
+/* ******** PENDING PAIR REQUEST PAGE ********** */
+
+#pendingPairRequest {
+  height: 92vh;
+  position: relative;
+  /* background-color: #37515F; */
+  /* background-color: #E4959E; */
+  /* background-color: #F3B3A6; */
+  background-color: #FEB6BD;
+  /* display: flex;
+  justify-content: center; */
+  text-align: center;
+  padding-top: 60px;
+  font-family: 'Konkhmer Sleokchher', cursive;
+  color: #233d4d;
+}
+
+#pendingPairRequest h2 {
+  /* border: 2px solid black; */
+}
+
+#pendingPairRequest h3 {
+  /* border: 2px solid black; */
+  padding: 10px;
+  letter-spacing: 2px;
+  
+}
+
+#pendingGif {
+  width: 200px;
+  height: auto;
+  
+}
+#pendingPairRequestFriend {
+  /* border: 2px solid black; */
+  /* background-color: #F3B3A6; */
+  color: #233d4d;
+  padding-top: 10px;
+  
+}
+
+.pendingRequestButtonsDiv {
+  /* border: 2px solid black; */
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 20px;
+  padding-right: 20px;
+}
+
+#pendingPairRequest button {
+  padding: 4px;
+  letter-spacing: 2px;
+  font-family: 'Konkhmer Sleokchher', cursive;
+  /* background-color: #233d4d;
+  color: #F3B3A6; */
+  background-color: #C6FCE0;
+  color: #233d4d;
+}
+
+
+/* ******** INCOMING PAIR REQUEST PAGE ********** */
+
+#incomingPairPage {
+  height: 92vh;
+  background-color: #C6FCE0;
+  text-align: center;
+  padding-top: 60px;
+  font-family: 'Konkhmer Sleokchher', cursive;
+}
+#incomingPairPage img {
+  margin: 10px;
+}
+#incomingPairPage h2 {
+  /* border: 2px solid black; */
+  
+}
+#incomingPairPage h3 {
+  letter-spacing: 2px;
+  margin: 10px;
+}
+
+.IncomingPairPageButtonsDiv {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 20px;
+  padding-right: 20px;
+}
+
+#incomingPairPageWrapper button {
+  font-family: 'Konkhmer Sleokchher', cursive;
+  padding: 4px;
+  letter-spacing: 2px;
+  margin: 10px;
+  background-color: #FEB6BD;
+  color: #233D4D;
+}
+
+#incomingPairPage #logoutButton button {
+  padding: 4px;
+  letter-spacing: 2px;
+  font-family: 'Konkhmer Sleokchher', cursive;
+  background-color: #233d4d;
+  color: #FEB6BD;
+  /* background-color: #C6FCE0;
+  color: #233d4d; */
+}
+
+/* ******** TINDER PAGE ********** */
+
+#tinderPage {
+  height: 92vh;
+  padding-top: 20px;
+  /* border: 2px solid black; */
+  /* background-color: #37515F; */
+}
+
+.tinderPageOops {
+  display: flex;
+  /* justify-content: center; */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* border: 2px solid red; */
+  height: 80%;
+  color: #233d4d;
+}
+
 .tinderPage {
   display: flex;
   /* justify-content: center; */
   flex-direction: column;
   align-items: center;
-  
+  /* border: 2px solid red; */
 }
+
+.tinderPage .movie {
+  /* background-color: whitesmoke; */
+  /* padding: 8px; */
+  /* border: 2px solid blue; */
+  width: 75%;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center; */
+}
+
 .tinderPage img {
   border-radius: 0;
-  width: 300px;
+  width: 100%;
   height: auto;
-
+  align-items: center;
+  background-color: whitesmoke;
+  padding: 5px;
 }
 
+.tinderPage p {
+  font-family: 'Konkhmer Sleokchher', cursive;
+  padding: 0;
+  margin: 0;
+}
+
+.tinderButtons {
+  width: 75%;
+  /* border: 2px solid greenyellow; */
+  display: flex;
+  justify-content: space-evenly;
+  padding-top: 3%;
+}
+
+.tinderButtons button {
+  font-family: 'Konkhmer Sleokchher', cursive;
+  padding: 4px;
+  letter-spacing: 2px;
+  background-color: #F3B3A6;
+  color: #233d4d;
+}
+
+#tinderPage .buttonsDiv button {
+  font-family: 'Konkhmer Sleokchher', cursive;
+  padding: 3px;
+  letter-spacing: 2px;
+  background-color: #233d4d;
+  color: #F3B3A6;
+  
+}
+
+/* ******** MATCH PAGE ********** */
+
 .matchPage {
+  height: 92vh;
+  padding-top: 20px;
   display: flex;
   /* justify-content: center; */
   flex-direction: column;
@@ -127,16 +534,47 @@ img {
   background-color: #ffb4a2;
 }
 
-.movie {
-  background-color: whitesmoke;
-  padding: 10px;
+#matchPageWrapper {
+  /* border: 2px solid black; */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#matchPageWrapper h1 {
+  font-family: 'Rampart One', cursive;
+  color: #233d4d;
+  padding-bottom: 1%;
+}
+
+#matchPageWrapper .movie {
+  /* border: 2px solid red; */
+  width: 70%;
+
 }
 
 .matchPage img {
   border-radius: 0;
-  width: 200px;
+  width: 100%;
   height: auto;
+  background-color: whitesmoke;
+  padding: 5px;
+}
 
+#matchPageWrapper h4 {
+  font-family: 'Konkhmer Sleokchher', cursive;
+  color: #233d4d;
+}
+
+.matchPage .buttonsDiv button {
+  font-family: 'Konkhmer Sleokchher', cursive;
+  padding: 3px;
+  letter-spacing: 2px;
+  background-color: #233d4d;
+  /* color: #F3B3A6; */
+  color: whitesmoke
+  
 }
 
 .moreDetailsWrapper {

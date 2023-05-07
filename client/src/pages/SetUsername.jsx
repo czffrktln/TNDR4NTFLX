@@ -40,13 +40,19 @@ const SetUsername = () => {
   }
 
   return (
-    <>
-      <h1>SET YOUR USERNAME</h1>
-      <input type="text" value={usernameInput} onChange={(e) => checkUsername(e.target.value)}></input>
-      {usernameNotAvailable && <p>this username has already found a match</p>}
-      <button onClick={sendUsername}>SET</button>
-      <LogoutButton/>
-    </>
+    <div id="setUsername">
+      {/* <div id="setUsernameWrapper"> */}
+        <h2>Set your username</h2>
+        <input type="text" value={usernameInput} onChange={(e) => checkUsername(e.target.value)}></input>
+        {usernameNotAvailable && <p>this username has already found a match</p>}
+      {/* </div> */}
+      <div className="buttonsDiv">
+        <div className="buttonPositionDiv">
+          <button disabled={usernameNotAvailable} onClick={sendUsername}>set</button>
+          <LogoutButton/>
+        </div>
+      </div>
+    </div>
   )
 }
 export default SetUsername

@@ -39,14 +39,21 @@ const IncomingRequest = () => {
 
 
   return (
-    <>
-      {location.state.picture ? <img src={location.state.picture}></img> : <img src={noimg}></img>}
-      <h2>{location.state.username}</h2>
-      <p>wants to be your friend</p>
-      <button onClick={() => responseToFriendRequest(true)}>ACCEPT</button>
-      <button onClick={() => responseToFriendRequest(false)}>DENY</button>
-      <LogoutButton />
-    </>
+    <div id="incomingFriendRequest">
+      <div id="incomingFriendRequestWrapper">
+        {location.state.picture ? <img src={location.state.picture}></img> : <img src={noimg}></img>}
+        <h2>{location.state.username}</h2>
+        <p>wants to be your friend</p>
+        <button onClick={() => responseToFriendRequest(true)}>ACCEPT</button>
+        <button onClick={() => responseToFriendRequest(false)}>DENY</button>
+
+      </div>
+      <div className="oneButtonDiv">
+        <div className="oneButtonPositionDiv">
+          <LogoutButton />
+        </div>
+      </div>
+    </div>
   )
 }
 

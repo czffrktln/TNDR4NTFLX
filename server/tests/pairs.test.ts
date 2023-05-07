@@ -49,6 +49,7 @@ describe("POST /sendpairrequest", () => {
       .send(receiverid)
       .set("Authorization", `Bearer ${token}`);
     expect(response.status).toEqual(200);
+    User.find()
   });
 
   it("should return 500 if the user is not found", async () => {

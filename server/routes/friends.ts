@@ -31,6 +31,7 @@ router.post("/friendrequest", verify(FriendRequestSchema), verifyToken, async (r
     
   const isItNewFriendship = await Friendship.findOne({sender: senderId, receiver: findReceiver._id})
   if (isItNewFriendship) return res.status(400).json("Already exists.")
+  // 400 a safeparse is  
 
   // azt is leellenorizni, hogy a masik e az egyik
 

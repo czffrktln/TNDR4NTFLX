@@ -27,8 +27,8 @@ const Friend = ({friend}) => {
 
   return (
     <div className="oneFriend" onClick={sendPairRequest}>
-    <h3>{friend.friendId.username}</h3>
     {friend.friendId.picture ? <img src={friend.friendId.picture}></img> : <img src={noimg}></img>}
+    <h4>{friend.friendId.username}</h4>
     </div>
   )
 }

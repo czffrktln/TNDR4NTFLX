@@ -8,13 +8,24 @@ const Match = () => {
 
   return (
     <div className="matchPage">
-    <h2>IT'S A MATCH</h2>
-    <div className="movie">
-      <img src={location.state.posterURL}></img>
-      <h3>{location.state.title}</h3>
-    </div>
-    <GoHomeButton/>
-    <LogoutButton/>
+
+      <div id="matchPageWrapper">
+        <div>
+          <h1>IT'S A MATCH</h1>
+        </div>
+        <div className="movie">
+          <img src={location.state.posterURL}></img>
+          <h4>{location.state.title}</h4>
+        </div>
+      </div>
+
+      <div className="buttonsDiv">
+        <div className="buttonPositionDiv">
+          <GoHomeButton/>
+          <LogoutButton/>
+        </div>
+      </div>
+
     </div>
   )
 }

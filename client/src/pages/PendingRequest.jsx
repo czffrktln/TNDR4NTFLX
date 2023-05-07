@@ -34,13 +34,25 @@ const PendingRequest = () => {
   }, [])
 
   return (
-    <>
-      <h3>Waiting for</h3>
-      {location.state.friendPicture ? <img src={location.state.friendPicture}></img> : <img src={noimg}></img>}
-      <h2>{location.state.friendUsername}</h2>
-      <h3>to accept</h3>
-      <LogoutButton/>
-    </>
+    <div id="pendingPairRequest">
+      <div>
+        <h3>Waiting for</h3>
+        <div id="pendingPairRequestFriend">
+          {location.state.friendPicture ? <img src={location.state.friendPicture}></img> : <img src={noimg}></img>}
+          <h2>{location.state.friendUsername}</h2>
+        </div>
+        <h3>to accept</h3>
+        <div>
+          <img id="pendingGif" src="https://i.pinimg.com/originals/e7/bd/ad/e7bdad0daad96021feda64d88000386d.gif" alt="" />
+        </div>
+      </div>
+      <div className="pendingRequestButtonsDiv">
+        <div className="pendingRequestButtonPositionDiv">
+          {/* back button, pair request visszavonas? */}
+          <LogoutButton/>
+        </div>
+      </div>
+    </div>
   )
 }
 export default PendingRequest

@@ -10,7 +10,7 @@ const GoHomeButton = () => {
 
   return (
     <>
-    <button onClick={goHome}>HOME</button>
+    <button onClick={goHome}>home</button>
     </>
   )
 }

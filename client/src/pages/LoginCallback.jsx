@@ -53,6 +53,9 @@ const LoginCallback = () => {
 
   return (
     <div id="loginCallback">
+      <div id="loadingDiv">
+        <h3>loading...</h3>
+      </div>
     </div>
   )
 }

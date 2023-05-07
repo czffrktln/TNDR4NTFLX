@@ -30,7 +30,7 @@ const Tinder = () => {
             title: response.data.originalTitle,
         }})
       }
-    }, 50000);
+    }, 3000);
     return () => clearInterval(matchInterval)
   }, [])
 
@@ -58,26 +58,36 @@ const Tinder = () => {
     setMoreDetails(!moreDetails)
   }
   return (
-    <div >
+    <div id="tinderPage">
       { movies.length === count ? 
-        <div className="tinderPage">
+        <div className="tinderPageOops">
           <h3>Ooops! We ran out of movies...</h3>
-          <button>GIMME MORE</button>
-          <GoHomeButton/>
-          <LogoutButton/>
+          <div className="tinderButtons">
+            <button>GIMME MORE</button>
+          </div>
+          <div className="buttonsDiv">
+            <div className="buttonPositionDiv">
+              <GoHomeButton/>
+              <LogoutButton/>
+            </div>
+          </div>
         </div> 
       :
         <div className="tinderPage">
           <div className="movie">
-            <img src={movies[count].posterURL}></img>
-            <h2>{movies[count].originalTitle}</h2>
-            {movies[count].runtime > 0 && <h4>{movies[count].runtime} min</h4>}
+            <div>
+              <img src={movies[count].posterURL}></img>
+            </div>
+            <div>
+              <p>{movies[count].originalTitle}</p>
+              {movies[count].runtime > 0 && <h5>{movies[count].runtime} min</h5>}
+            </div>
           </div>
-          <div>
+          <div className="tinderButtons">
             <button onClick={()=> likeMovie(false)}>NO</button>
             <button onClick={() => likeMovie(true)}>GO</button>
           </div>
-            <button onClick={setMore}>{moreDetails ? <p>LESS</p> : <p>MORE</p>}</button>
+            {/* <button onClick={setMore}>{moreDetails ? <p>LESS</p> : <p>MORE</p>}</button> */}
           <div className="moreDetailsWrapper">
             { moreDetails && 
               <div className="moreDetails">
@@ -85,8 +95,12 @@ const Tinder = () => {
               </div>
             }
           </div>
-            <GoHomeButton/>
-            <LogoutButton/>
+          <div className="buttonsDiv">
+            <div className="buttonPositionDiv">
+              <GoHomeButton/>
+              <LogoutButton/>
+            </div>
+          </div>
         </div>
       }
     </div>

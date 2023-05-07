@@ -1,0 +1,677 @@
+openapi: 3.0.3
+info:
+  title: T.ND:R 4 N:TFL.X
+  description: |-
+    This is the server of T.ND:R 4 N:TFL.X app
+  version: 1.0.11
+
+servers:
+  - url: http://localhost:8080/api
+tags:
+  - name: user
+    description: Operations about user
+  - name: friends
+    description: Operations about friends
+  - name: pairs
+    description: Operations about pairs
+  - name: login
+    description: Login to the application
+paths:
+  /username:
+    post:
+      tags:
+        - user
+      summary: Checks if the user has already set an username
+      description: this endpoint checks whether the user has already set an username, the endpoint returns user's username
+      # operationId: updatePet ??
+      requestBody:
+        description: Checks if the user has already set an username
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UsersubSchema'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: string
+                example: ""
+        '400':
+          description: safeParse error
+        '401':
+          description: Missing header / Missing token
+        '403':
+          description: User not found
+        '404':
+          description: User not found
+      security:
+        - bearerAuth: []
+  /usernameavailable:
+    post:
+      tags:
+        - user
+      summary: Checks that username is already set for an other user
+      description: this endpoint checks that the choosen username is already set for an other user, it returns an object with key, alreadyInUse, and the value of the key is true or false
+      requestBody:
+        description: Checks that username is already set for an other user
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UsernameSchema'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alreadyInUse:
+                    type: boolean
+                    example: true
+        '400':
+          description: safeParse error
+  /setusername:
+    post:
+      tags:
+        - user
+      summary: Sets the user's username
+      description: this endpoint sets the user's username
+      requestBody:
+        description: Sets the user's username
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UsernameSchema'
+        required: true
+      responses:
+        '200':
+          description: Sends a sessionToken from user's data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionTokenSchema'
+        '400':
+          description: safeParse error
+        '401':
+          description: Missing header / Missing token
+        '500':
+          description: User not found / Username not set
+      security:
+        - bearerAuth: []
+  /sendpairrequest:
+    post:
+      tags:
+        - pairs
+      summary: User sends a pair request to another user
+      description: on this endpoint the user sends a pair request to another user, and a pair document created in database based on Pair schema and the id of the new pair document returned
+      requestBody:
+        description: Id of the user, who gets a pair request
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReceiverIdSchema'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pairId:
+                    type: string
+                    example: 64566b8885d20f8a491f05e5
+        '400':
+          description: safeParse error
+        '401':
+          description: Missing header / Missing token
+        '500':
+          description: Data not found / Data not updated
+      security:
+        - bearerAuth: []
+  /istherearequest:
+    post:
+      tags:
+        - pairs
+      summary: Checks whether user got a pair request
+      description: if there is a Pair document, where user is receiver and the status is pending, returns Pair document
+      requestBody:
+        description: Id of the user, who gets a pair request
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserIdSchema'
+        required: true
+      responses:
+        '200':
+          description: returns Pair document
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pair:
+                    $ref: '#/components/schemas/Pair'
+        '204':
+          description: Data not found
+        '400':
+          description: safeParse error
+        '401':
+          description: Missing header / Missing token
+      security:
+        - bearerAuth: []        
+  /isrequestaccepted:
+    post:
+      tags:
+        - pairs
+      summary: Checks whether the pair request got accepted
+      description: this endpoint checks whether the pair request sent by user got accepted, and returns pair document
+      requestBody:
+        description: Id of pair document
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PairIdSchema'
+        required: true
+      responses:
+        '200':
+          description: returns Pair document
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pair'
+        '204':
+          description: Data not found
+        '400':
+          description: safeParse error
+        '401':
+          description: Missing header / Missing token
+      security:
+        - bearerAuth: []  
+  /responsetopairrequest:
+    post:
+      tags:
+        - pairs
+      summary: User to respond to a pair request
+      description: this endpoint allows user to respond to a pair request user has got, if user accepted the pair request, the endpoint returns the updated pair document
+      requestBody:
+        description: Id of pair document and response of user
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResponseToPairRequestSchema'
+              # status active
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pair'
+        '400':
+          description: safeParse error
+        '401':
+          description: Missing header / Missing token          
+        '500':
+          description: Data not found / Data not updated
+      security:
+        - bearerAuth: []          
+  /likemovie:
+    post:
+      tags:
+        - pairs
+      summary: Save movie id into pair document
+      description: on this endpoint save an id of a movie into the pair document in database, and check if the 2 user liked the same movie
+      requestBody:
+        description: Id of pair document, id of moive and response of user
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LikeMovieSchema'
+        required: true
+      responses:
+        '200':
+          description: It's a match
+          content:
+            application/json:
+              schema:
+                type: string
+                example: It's a match
+        '204':
+          description: No match              
+        '400':
+          description: safeParse error
+        '401':
+          description: Missing header / Missing token          
+        '500':
+          description: Data not found / Data not updated   
+      security:
+        - bearerAuth: []          
+  /isthereamatch:
+    post:
+      tags:
+        - pairs
+      summary: Is it a match ?
+      description: this endpoint checks whether the 2 users liked the same movie, returns the movie document
+      requestBody:
+        description: Id of pair document
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PairIdSchema'
+        required: true
+      responses:
+        '200':
+          description: It's a match
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Movie'
+        '204':
+          description: No match              
+        '400':
+          description: safeParse error
+        '401':
+          description: Missing header / Missing token          
+        '500':
+          description: Data not found / Data not updated            
+      security:
+        - bearerAuth: []
+  /:
+    post:
+      tags:
+        - login
+      summary: User login
+      description: on this endpoint the user can login into the application, and the server saves the user's data into the database, returns a jwt sessiontoken created from user's data
+      requestBody:
+        description: code from Google
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginSchema'
+        required: true
+      responses:
+        '200':
+          description: jwt sessiontoken
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionTokenSchema'
+        '400':
+          description: safeParse error
+        '401':
+          description: Missing header / Missing token          
+        '500':
+          description: Data not found / Data not updated            
+  /friendrequest:
+    post:
+      tags:
+        - friends
+      summary: User sends a friend request to another user
+      description: on this endpoint the user sends a friend request to another user, returns the request sender user's friends list
+      requestBody:
+        description: Username of the user who receives the request
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UsernameSchema'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FriendRequestResponseSchema'
+        '400':
+          description: safeParse error / Already exists
+        '401':
+          description: Missing header / Missing token
+        '404':
+          description: User not found       
+        '500':
+          description: Data not found / Data not updated
+        '503':
+          description: Not saved into database         
+      security:
+        - bearerAuth: [] 
+  /istherearequest2:
+    post:
+      tags:
+        - friends
+      summary: Is there a friend request ?
+      description: this endpoint checks whether the user got a friend request, means there is a friendship document, where user is receiver, and the status is "pending"
+      requestBody:
+        description: Id of user
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserIdSchema'
+        required: true
+      responses:
+        '200':
+          description: It's a match
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IsThereAFriendRequestResponseSchema'
+        '204':
+          description: Data not found             
+        '400':
+          description: safeParse error
+        '401':
+          description: Missing header / Missing token          
+        '503':
+          description: Data not found           
+      security:
+        - bearerAuth: []
+  /responsetorequest:
+    post:
+      tags:
+        - friends
+      summary: User responds to a friend request
+      description: on this endpoint the user accept or deny a friend request
+      requestBody:
+        description: Id of friendship document and response of user
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResponseToFriendRequestSchema'
+        required: true
+      responses:
+        '200':
+          description: user denied request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Friendship'
+        '202':
+          description: user accepted request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Friendship'                
+        '400':
+          description: safeParse error
+        '401':
+          description: Missing header / Missing token          
+        '503':
+          description: Data not updated
+      security:
+        - bearerAuth: []         
+        
+        
+components:
+  securitySchemes:
+    bearerAuth:            
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    User:
+      required:
+        - email
+      type: object
+      properties:
+        id:
+          type: string
+          example: 643c43cfda4af5fdabc8b1c6
+        username:
+          type: string
+          example: Nyuszika
+        email:
+          type: string
+          example: test@test.hu
+        name:
+          type: string
+          example: Kockásfülű nyúl
+        sub:
+          type: string
+          example: 108969135490295441234
+        picture:
+          type: string
+          example: https://testurl.com
+        friends: 
+          type: array
+          items:
+            type: object
+            properties:
+              friendshipId:
+                $ref: '#/components/schemas/Friendship'
+              friendId:
+                $ref: '#/components/schemas/User'
+    Pair:
+      type: object
+      properties:
+        sender:
+          $ref: '#/components/schemas/User'
+        receiver:
+          $ref: '#/components/schemas/User'
+        status:
+          type: string
+          enum:
+            - pending
+            - accepted
+            - denied
+        moviesTheyChoosingFrom:
+          type: array
+          items:
+            $ref: '#/components/schemas/Movie'
+        moviesSenderLiked:
+          type: array
+          items:
+            $ref: '#/components/schemas/Movie'
+        moviesSenderDisliked:
+          type: array
+          items:
+            $ref: '#/components/schemas/Movie'
+        moviesReceiverLiked:
+          type: array
+          items:
+            $ref: '#/components/schemas/Movie'
+        moviesReceiverDisliked:
+          type: array
+          items:
+            $ref: '#/components/schemas/Movie'
+    Movie:
+      type: object
+      properties:
+        cast:
+          type: array
+          items: 
+            type: string
+            example: [Gabriella Hámori, Péter Scherer, Zsolt Nagy, János Kulka, Viktória Staub, Ákos Orosz]
+        countries:
+          type: array
+          items:
+            type: string
+            example: [HU]
+        directors:
+          type: array
+          items: 
+            type: string
+            example: [Péter Fazakas]
+        genres:
+          type: array
+          items: 
+            type: object
+            properties:
+              id:
+                type: integer
+                format: int64
+                example: 18
+              name:
+                type: string
+                example: Drama
+        imdbId:
+          type: string
+          example: tt13400142
+        imdbRating:
+          type: integer
+          format: int64
+          example: 70
+        originalLanguage: 
+          type: string
+          example: hu
+        originalTitle:
+          type: string
+          example: A játszma
+        overview:
+          type: string
+          example: During the Cold War, the secret service of Kádár began a more dangerous state security game than ever before
+        posterURL:
+          type: string
+          example: https://image.tmdb.org/t/p/original/iikGOkF5pIMhJW0TdQHgiePry79.jpg
+        runtime:
+          type: integer
+          format: int64
+          example: 112
+        title:
+          type: string
+          example: The Game
+        year:
+          type: integer
+          format: int64
+          example: 2022
+    Friendship:
+      type: object
+      properties:
+        sender:
+          $ref: '#/components/schemas/User'
+        receiver:
+          $ref: '#/components/schemas/User'
+        status:
+          type: string
+          enum:
+            - pending
+            - accepted
+            - denied
+    UsersubSchema:
+      type: object
+      properties:
+        usersub:
+          type: string
+          example: 108969135490295441234
+    UsernameSchema:
+      type: object
+      properties:
+        username:
+          type: string
+          example: Nyuszika
+    SessionTokenSchema:
+      type: string
+      example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im55dXN6aWFsYWt1bHVmaUBnbWFpbC5jb20iLCJuYW1lIjoiNSBtc2MiLCJzdWIiOiIxMDg5NjkxMzU0OTAyOTU0NDg1NjciLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUdObXl4WkJxb0RQSW1Lb1R3R2paSWstX0NaTEZGeFhUU1VmNUZzalBxNU89czk2LWMiLCJfaWQiOiI2NDNjNDNjZmRhNGFmNWZkYWJjOGIxYzYiLCJmcmllbmRzIjpbXSwiX192IjowLCJpYXQiOjE2ODE2NzExMTl9.JZ-kd5hC5lVz9muiWAblSZhC_HzAbWHnbHdmNThJVzU
+    ReceiverIdSchema:
+      type: object
+      properties:
+        receiverId:
+          type: string
+          example: 643c43cfda4af5fdabc8b1c1
+    UserIdSchema:
+      type: object
+      properties:
+        userid:
+          type: string
+          example: 643c43cfda4af5fdabc8b1c1          
+    PairIdSchema:
+      type: object
+      properties:
+        pairid:
+          type: string
+          example: 643c43cfda4af5fdabc8b1c1      
+    ResponseToPairRequestSchema:
+      type: object
+      properties:
+        pairId:
+          type: string
+          example: 643c43cfda4af5fdabc8b1c1   
+        resp:
+          type: string
+          enum:
+            - accept
+            - denied
+          example: accept
+    LikeMovieSchema:
+      type: object
+      properties:
+        pairId:
+          type: string
+          example: 643c43cfda4af5fdabc8b1c1   
+        movieId:
+          type: string
+          example: 64492cf7797ec449371756b9          
+        resp:
+          type: boolean
+          example: true    
+    LoginSchema:
+      type: object
+      properties:
+        code:
+          type: string
+          example: as56df5w5a8d823djak   
+    FriendRequestResponseSchema:
+      type: array
+      items:
+        type: object
+        properties:
+          friendshipId:
+            type: object
+            properties:
+              _id:
+                type: string
+                example: 643c43cfda4af5fdabc8b1c1
+              sender:
+                type: string
+                example: 643c43cfda4af5fdabc8b1c1              
+              receiver:
+                type: string
+                example: 643c43cfda4af5fdabc8b1c1              
+              status:
+                type: string
+                example: active              
+          friendId:
+            type: object
+            properties:
+              _id:
+                type: string
+                example: 643c43cfda4af5fdabc8b1c1                
+              username:
+                type: string
+                example: Nyuszika
+              picture:
+                type: string
+                example: http://test.url
+    IsThereAFriendRequestResponseSchema:
+      type: object
+      properties:
+        friendshipId:
+          type: string
+          example: 643c43cfda4af5fdabc8b1c1
+        id:
+          type: string
+          example: 643c43cfda4af5fdabc8b1c1
+        username:
+          type: string
+          example: Nyuszika              
+        picture:
+          type: string
+          example: http://test.url 
+    ResponseToFriendRequestSchema:
+      type: object
+      properties:
+        friendshipId:
+          type: string
+          example: 643c43cfda4af5fdabc8b1c1   
+        resp:
+          type: boolean
+          example: true                
+                
+                
+  
